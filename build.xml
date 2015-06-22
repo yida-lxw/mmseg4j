@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mmseg4j" default="zip">
+
+	<property file="build.properties" />
+	<property name="project.name" value="${ant.project.name}" />
+
+	<property name="dist.dir" value="dist" />
+	<target name="init">
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<target name="zip" depends="init">
+		<delete file="${dist.dir}/${project.name}-${version}.zip">
+		</delete>
+		<copy todir="temp-zip/${project.name}-${version}/dist" preservelastmodified="true">
+			<fileset dir="${project.name}-core/target" >
+				<include name="*.jar"/>
+				<exclude name="*-sources.jar"/>
+				<exclude name="*-javadoc.jar"/>
+			</fileset>
+			<fileset dir="${project.name}-analysis/target" >
+				<include name="*.jar"/>
+				<exclude name="*-sources.jar"/>
+				<exclude name="*-javadoc.jar"/>
+			</fileset>
+			<fileset dir="${project.name}-solr/target" >
+				<include name="*.jar"/>
+				<exclude name="*-sources.jar"/>
+				<exclude name="*-javadoc.jar"/>
+			</fileset>
+		</copy>
+
+		<copy todir="temp-zip/${project.name}-${version}/${project.name}-core" preservelastmodified="true">
+			<fileset dir="${project.name}-core">
+				<include name="src/**" />
+				<include name="pom.xml" />
+			</fileset>
+		</copy>
+		<copy todir="temp-zip/${project.name}-${version}/${project.name}-analysis" preservelastmodified="true">
+			<fileset dir="${project.name}-analysis">
+				<include name="src/**" />
+				<include name="pom.xml" />
+			</fileset>
+		</copy>
+		<copy todir="temp-zip/${project.name}-${version}/${project.name}-solr" preservelastmodified="true">
+			<fileset dir="${project.name}-solr">
+				<include name="src/**" />
+				<include name="pom.xml" />
+			</fileset>
+		</copy>
+		<copy todir="temp-zip/${project.name}-${version}" preservelastmodified="true">
+			<fileset dir=".">
+				<include name="*.txt" />
+				<include name="build.properties"/>
+				<include name="build.xml"/>
+				<include name="pom.xml"/>
+			</fileset>
+		</copy>
+		<zip destfile="${dist.dir}/${project.name}-${version}.zip" basedir="temp-zip">
+		</zip>
+		<delete dir="temp-zip">
+		</delete>
+	</target>
+
+</project>

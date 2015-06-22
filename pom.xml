@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <groupId>com.chenlb.mmseg4j</groupId>
+  <artifactId>mmseg4j-parent</artifactId>
+  <version>1.9.2</version>
+  <packaging>pom</packaging>
+  <name>mmseg4j</name>
+  <url>http://code.google.com/p/mmseg4j/</url>
+  <description>MMSEG for java lucene chinese analyzer, or for solr</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+  	<url>http://blog.chenlb.com</url>
+  	<name>chenlb open source</name>
+  </organization>
+  <scm>
+  	<url>http://mmseg4j.googlecode.com/svn/trunk/</url>
+  	<connection>scm:svn:http://mmseg4j.googlecode.com/svn/trunk/</connection>
+  	<developerConnection>scm:svn:https://mmseg4j.googlecode.com/svn/trunk/</developerConnection>
+  </scm>
+  <developers>
+  	<developer>
+  		<id>chenlb</id>
+  		<name>LinBin Chen</name>
+  		<email>chenlb2008@gmail.com</email>
+  	</developer>
+  </developers>
+  <issueManagement>
+  	<url>http://code.google.com/p/mmseg4j/issues</url>
+  	<system>code.google.com</system>
+  </issueManagement>
+  <properties>
+  	<mmseg4j.version>1.9.1</mmseg4j.version>
+  </properties>
+
+  <modules>
+  	<module>mmseg4j-core</module>
+  	<module>mmseg4j-analysis</module>
+  	<module>mmseg4j-solr</module>
+  </modules>
+
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>junit</groupId>
+  			<artifactId>junit</artifactId>
+  			<version>4.8</version>
+  			<scope>test</scope>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.chenlb.mmseg4j</groupId>
+  			<artifactId>mmseg4j-core</artifactId>
+  			<version>${mmseg4j.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.chenlb.mmseg4j</groupId>
+  			<artifactId>mmseg4j-analysis</artifactId>
+  			<version>${mmseg4j.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.chenlb.mmseg4j</groupId>
+  			<artifactId>mmseg4j-solr</artifactId>
+  			<version>${mmseg4j.version}</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+
+  <build>
+	<plugins>
+		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-compiler-plugin</artifactId>
+		  <version>2.3.1</version>
+		  <configuration>
+		    <source>1.6</source>
+		    <target>1.6</target>
+		    <encoding>UTF-8</encoding>
+		  </configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-gpg-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>sign-artifacts</id>
+					<phase>verify</phase>
+					<goals>
+						<goal>sign</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+  </build>
+</project>

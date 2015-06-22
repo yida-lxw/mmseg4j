@@ -1,0 +1,78 @@
+﻿---------1.9.1 2013-07-13-----------
+1、兼容 solr 4.3.1
+---------1.9.1.v20130120 2013-01-20-----------
+1、修复没用使用 lucene 4.0 reset 的问题 r89。
+---------1.9.0 2013-01-10-----------
+1、兼容 solr 4.0.0 正式版
+2、使用 maven
+3、词典目录唯一性 bug
+---------1.9.0.v20120712-SNAPSHOT 2012-07-10-----------
+1、兼容 solr 4.0 ALPHA
+---------1.8.5 2011-06-18-----------
+1、兼容 solr 3.1/3.2
+---------1.8.4 2010-12-17-----------
+1、fixbug: CutLetterDigitFilter 丢了第一个 token。
+2、增加 CutLetterDigitFilterFactory for solr
+---------1.8.3 2010-10-07-----------
+1、用 ivy 管理 jar
+2、支持 lucene 2.9/3.0, solr 升级到 1.4
+---------1.8.2 2009-11-13-----------
+fixed bugs:
+	1、使用 max-word 分词方式，依然出现 highlight 定位不准确。http://code.google.com/p/mmseg4j/issues/detail?id=9
+---------1.8.1 2009-10-21-----------
+fixed bugs:
+	1、使用 Lucene highlight 抛出 InvalidTokenOffsetsException 或 StringIndexOutOfBoundsException。
+---------1.8 2009-10-18-----------
+new:
+	1、有检测词典变更的接口，外部程序可以使用 wordsFileIsChange() 和 reload() 来完成检测与加载的工作. (内部不实现自动检测与加载，留给外部程序去做。)
+	2、添加 MMseg4jHandler 类，可以在solr中用url的方式来控制加载检测词库。
+	3、增加 CutLetterDigitFilter过虑器，切分“字母和数”混在一起的过虑器。比如：mb991ch 切为 "mb 991 ch"。
+
+changes:
+	1、默认在 classpath 中加载 data 目录（词库目录），找不到再找 user.dir/data 目录。但是优先 mmseg.dic.path 系统属性指定的。
+	2、去除 sogou 高频无词性的词，合并 rmmseg 提供的词（是 mmseg4j 1.0 使用的词库），共计（14W 多词）。
+	3、Dictionary 改为词库目录缓存单例模式。
+	4、数字或英文开头的数字或英文不独立分出。如 MB991CH/A 分为 mb991ch a，cq40-519tx 分为 CQ40 519TX
+	5、Chunk 的内部类 Word 变成独立的类，并加一 type 给 Token 的 type 用。
+	6、内置支持小写，不需要 LowerCaseFilter 了。MMSegAnalyzer 去除了小写过虑。
+	7、MMSegAnalyzer 增加取得 Dictionary 的方法，方便使用检测与加载词库。
+	8、支持 solr 1.3/1.4、lucene 2.3/2.4/2.9
+	9、尝试加载 jar 里的 words.dic，并构建含有 words.dic 的 jar(mmseg4j-*-with-dic.jar)。
+
+bugs:
+	1、Dictionary 添加 finalize 方法。修正 tomcat reload 时 OOM 的 bug: http://code.google.com/p/mmseg4j/issues/detail?id=4
+	2、MMSegTokenizer 在 lucene 2.4 编译的 在 lucene 2.9 中会报 java.lang.NoSuchFieldError: input。bug: http://code.google.com/p/mmseg4j/issues/detail?id=5
+---------1.7.2-----------
+1.添加 lowerCaseFilter 后的一个 bug: NullPointerException
+2.核发程序与 lucene 和 solr 扩展分开打包, 同时给出低版本的 lucene 扩展(lucene 1.9 到 2.2; lucene 2.3)
+---------1.7.1-----------
+没有此版本. 为了保存 1.6 系同版本小号
+---------1.7-------------
+1.删除没必要方法
+2.analyzer 添加 LowerCaseFilter
+---------1.7-beta--------
+1.要比较的词不从 char[] sen 里复制,直接与词库结构比较, 性能提升10%
+2.用 key tree 的词库数据结构, 性能提升不少
+3.用 key tree 里实现的 maxmatch, 同时返回所有相关词的长度, 性能提升不少
+---------1.6-------------
+1.实现多分词
+2.允许多个词库文件
+3.单字的单位独立一个文件(data/units.dic, 已经放入jar包里)
+---------1.5-------------
+1.使用sogou核心词库(15W)
+2.把chars.dic文件放到jar里, 我们不需要关心他
+3.最长匹配遍历调整(基本不受长词的影响)
+4.优化了程序,除去没有必要的数组复制等,性能提升40%
+---------1.0.2------------
+1.数字接着的年月日独立分
+---------1.0.1------------
+1.MMSeg.next() 断句有个 bug。
+空白字符后面的英文会丢失，且分词停止。
+
+如：“手机电子书 http”空格后面的http丢了。
+
+---------1.0--------------
+1.实现 mmseg 算法分词
+2.有两种 Simple 和 Complex 分词
+3.扩展 Lucene 的 Analyzer, 以便结合 Lucene 使用
+4.扩展 Solr 的 TokenizerFactory, 以便结合 Solr 使用

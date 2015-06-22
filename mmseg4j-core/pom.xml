@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>mmseg4j-parent</artifactId>
+    <groupId>com.chenlb.mmseg4j</groupId>
+    <version>1.9.2</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <artifactId>mmseg4j-core</artifactId>
+  <name>mmseg4j-core</name>
+
+  <dependencies>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<scope>test</scope>
+	</dependency>
+  </dependencies>
+
+  <version>1.9.2</version>
+</project>

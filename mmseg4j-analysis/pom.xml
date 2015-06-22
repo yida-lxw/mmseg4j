@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>mmseg4j-parent</artifactId>
+    <groupId>com.chenlb.mmseg4j</groupId>
+    <version>1.9.2</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <artifactId>mmseg4j-analysis</artifactId>
+  <name>mmseg4j-analysis</name>
+  <properties>
+  	<lucene.version>5.0.0</lucene.version>
+  </properties>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.chenlb.mmseg4j</groupId>
+  		<artifactId>mmseg4j-core</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.lucene</groupId>
+  		<artifactId>lucene-core</artifactId>
+  		<version>${lucene.version}</version>
+  	</dependency>
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-queryparser</artifactId>
+		<version>${lucene.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<scope>test</scope>
+	</dependency>
+  </dependencies>
+  <version>1.9.2</version>
+</project>
