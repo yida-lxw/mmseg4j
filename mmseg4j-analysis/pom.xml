@@ -9,7 +9,7 @@
   <artifactId>mmseg4j-analysis</artifactId>
   <name>mmseg4j-analysis</name>
   <properties>
-  	<lucene.version>5.0.0</lucene.version>
+  	<lucene.version>8.2.0</lucene.version>
   </properties>
   <dependencies>
   	<dependency>
